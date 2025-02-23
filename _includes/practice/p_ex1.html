@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert-Level API Documentation - Exercise 1</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,7 +15,7 @@
             color: #007bff;
         }
 
-        .exercise-button {
+        .exercise-button, .solution-button {
             background-color: #007bff;
             color: #fff;
             padding: 10px 20px;
@@ -24,7 +26,7 @@
             display: inline-block;
         }
 
-        .exercise-content {
+        .exercise-content, .solution-content {
             display: none;
             padding: 15px;
             border: 1px solid #ccc;
@@ -44,6 +46,7 @@
 </head>
 <body>
     <button class="exercise-button" onclick="toggleExercise('exercise1')">Exercise 1</button>
+    <button class="solution-button" onclick="toggleSolution('solution1', 'exercise1')">Solution to Exercise 1</button>
 
     <!-- Exercise 1 Content -->
     <div class="exercise-content" id="exercise1">
@@ -88,10 +91,73 @@ Response: 200 OK
         <p><strong>Hint:</strong> Consider adding error codes, request validation rules, and example responses for failures.</p>
     </div>
 
+    <!-- Solution to Exercise 1 -->
+    <div class="solution-content" id="solution1">
+        <h3>Solution: Complete API Documentation</h3>
+        
+        <h4>Improved API Documentation:</h4>
+        <pre>
+### GET /v1/users/{userId}
+Retrieves a single user's details.
+
+**Path Parameters**:
+- `userId` (integer, required): Unique identifier of the user.
+
+**Headers**:
+- `Authorization` (string, required): Bearer token for authentication.
+- `Accept` (string, optional): Specifies the response format (e.g., application/json).
+
+**Example Request**:
+GET /v1/users/12345 HTTP/1.1
+Host: api.example.com
+Authorization: Bearer &lt;token&gt;
+Accept: application/json
+
+**Response: 200 OK**
+{
+  "id": 12345,
+  "name": "John Doe",
+  "email": "john@example.com"
+}
+
+**Error Responses:**
+- **404 Not Found**: User ID does not exist.
+  {
+    "error": "User not found",
+    "code": 404
+  }
+- **401 Unauthorized**: Invalid or missing authorization token.
+  {
+    "error": "Unauthorized",
+    "code": 401
+  }
+- **429 Too Many Requests**: Rate limit exceeded.
+  {
+    "error": "Rate limit exceeded",
+    "code": 429
+  }
+        </pre>
+        
+        <h4>Key Improvements:</h4>
+        <ul>
+            <li>Added `Authorization` and `Accept` headers.</li>
+            <li>Specified `userId` as an integer and required parameter.</li>
+            <li>Included error handling for `404`, `401`, and `429` responses.</li>
+            <li>Improved response format and examples for clarity.</li>
+        </ul>
+    </div>
+
     <script>
         function toggleExercise(exerciseId) {
             var exercise = document.getElementById(exerciseId);
             exercise.style.display = exercise.style.display === "block" ? "none" : "block";
+        }
+
+        function toggleSolution(solutionId, exerciseId) {
+            var solution = document.getElementById(solutionId);
+            var exercise = document.getElementById(exerciseId);
+            solution.style.display = solution.style.display === "block" ? "none" : "block";
+            exercise.style.display = "none";
         }
     </script>
 </body>
