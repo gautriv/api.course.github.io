@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,6 +40,23 @@
             padding: 10px;
             border-radius: 5px;
             overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
         }
     </style>
 </head>
@@ -95,56 +111,90 @@ Response: 200 OK
     <div class="solution-content" id="solution1">
         <h3>Solution: Complete API Documentation</h3>
         
-        <h4>Improved API Documentation:</h4>
+        <h4>1. Endpoint & Method</h4>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Endpoint</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/v1/users/{userId}</td>
+                <td>Retrieves a single user's details</td>
+            </tr>
+        </table>
+        
+        <h4>2. Request Parameters</h4>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Required</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>userId</td>
+                <td>integer</td>
+                <td>Yes</td>
+                <td>Unique identifier of the user</td>
+            </tr>
+        </table>
+        
+        <h4>3. Headers</h4>
+        <table>
+            <tr>
+                <th>Header</th>
+                <th>Required</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Authorization</td>
+                <td>Yes</td>
+                <td>Bearer token for authentication</td>
+            </tr>
+        </table>
+        
+        <h4>4. Example Request</h4>
         <pre>
-### GET /v1/users/{userId}
-Retrieves a single user's details.
-
-**Path Parameters**:
-- `userId` (integer, required): Unique identifier of the user.
-
-**Headers**:
-- `Authorization` (string, required): Bearer token for authentication.
-- `Accept` (string, optional): Specifies the response format (e.g., application/json).
-
-**Example Request**:
 GET /v1/users/12345 HTTP/1.1
 Host: api.example.com
 Authorization: Bearer &lt;token&gt;
-Accept: application/json
-
-**Response: 200 OK**
+        </pre>
+        
+        <h4>5. Response</h4>
+        <pre>
+HTTP/1.1 200 OK
 {
   "id": 12345,
   "name": "John Doe",
   "email": "john@example.com"
 }
-
-**Error Responses:**
-- **404 Not Found**: User ID does not exist.
-  {
-    "error": "User not found",
-    "code": 404
-  }
-- **401 Unauthorized**: Invalid or missing authorization token.
-  {
-    "error": "Unauthorized",
-    "code": 401
-  }
-- **429 Too Many Requests**: Rate limit exceeded.
-  {
-    "error": "Rate limit exceeded",
-    "code": 429
-  }
         </pre>
         
-        <h4>Key Improvements:</h4>
-        <ul>
-            <li>Added `Authorization` and `Accept` headers.</li>
-            <li>Specified `userId` as an integer and required parameter.</li>
-            <li>Included error handling for `404`, `401`, and `429` responses.</li>
-            <li>Improved response format and examples for clarity.</li>
-        </ul>
+        <h4>6. Error Responses</h4>
+        <table>
+            <tr>
+                <th>HTTP Code</th>
+                <th>Message</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>401</td>
+                <td>Unauthorized</td>
+                <td>Invalid or missing authorization token</td>
+            </tr>
+            <tr>
+                <td>404</td>
+                <td>User Not Found</td>
+                <td>The specified userId does not exist</td>
+            </tr>
+            <tr>
+                <td>429</td>
+                <td>Rate Limit Exceeded</td>
+                <td>Too many requests in a short period</td>
+            </tr>
+        </table>
     </div>
 
     <script>
